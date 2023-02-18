@@ -20,8 +20,6 @@ export const HomePage = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  console.log('values', values);
-
   return (
     <Grid container p="20px" display="flex" justifyContent="center">
       {values.map((item: any) => (
