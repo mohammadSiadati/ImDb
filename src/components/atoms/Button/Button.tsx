@@ -7,13 +7,19 @@ type ButtonLoginType = {
   typeButton: 'text' | 'outlined' | 'contained';
   title: string;
   onClick?: () => void;
+  typeBtn?: any;
 };
 
 export const BaseButton = (props: ButtonLoginType) => {
-  const { typeButton, onClick, title, ...rest } = props;
+  const { typeButton, onClick, typeBtn, title, ...rest } = props;
   return (
     <>
-      <StyledButton variant={typeButton} onClick={onClick} {...rest}>
+      <StyledButton
+        type={typeBtn}
+        variant={typeButton}
+        onClick={onClick}
+        {...rest}
+      >
         {title}
       </StyledButton>
     </>

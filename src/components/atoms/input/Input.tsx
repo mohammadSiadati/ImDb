@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 
 type TextFieldType = {
   fullWidth: boolean;
-  id: string;
+  id?: string;
   label: string;
   type: string;
   autoFocus?: boolean;
