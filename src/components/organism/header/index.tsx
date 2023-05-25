@@ -1,11 +1,37 @@
 import { BaseButton } from '@/components/atoms/Button/Button';
 import { SearchInput } from '@/components/atoms/searchHeader';
-import { AppBar, Box, Container } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
+const styles = () => ({
+  popoverPaper: {
+    width: '90%',
+    height: '80%',
+    maxHeight: 'unset',
+    left: '5% !important',
+  },
+});
 export const Header = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event: any) => {
+    console.log('currect target', event.currentTarget);
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <AppBar position="static" sx={{ background: '#301E67' }}>
       <Container

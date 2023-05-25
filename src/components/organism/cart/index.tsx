@@ -40,44 +40,26 @@ type CartMovies = {
   altImage: string;
   image: string;
   rank: number | string;
+  onclick?: any;
   movieName: string;
+  rate: string;
 };
 
 export const MoviesCart = (props: CartMovies) => {
-  const { image, altImage, description, movieName, rank } = props;
-
-  const [expanded, setExpanded] = useState(false);
+  const { image, altImage, description, movieName, rank, rate, onclick } =
+    props;
   const [color, setColor] = useState(<BookmarkBorderIcon />);
+  const [icon, setIcon] = useState(<BookmarkIcon />);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const array = localStorage.getItem('Favorite-Movie');
+  console.log(array);
+
+  // const search = array.find((item) => {
+  //   item;
+  // });
+
   return (
     <>
-      {/* <Card sx={{ maxWidth: 345, background: '#B6EADA' }}>
-        <CardMedia component="img" height="194" image={image} alt={altImage} />
-        <CardContent>
-          <Typography variant="body1" color="text.secondary" noWrap>
-            {description}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <BookmarkBorderIcon />
-          </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent></CardContent>
-        </Collapse>
-      </Card> */}
       <Card
         sx={{
           maxWidth: 345,
@@ -99,26 +81,35 @@ export const MoviesCart = (props: CartMovies) => {
               wordWrap: 'break-word',
             }}
           >
-            <Typography gutterBottom variant="h5" component="div">
-              {movieName}
-            </Typography>
+            <Box display="flex">
+              <Typography gutterBottom variant="h6" component="div">
+                {rank}:
+              </Typography>
+              <Typography ml="5px" gutterBottom variant="h6" component="div">
+                {movieName}
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               {description}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions sx={{ justifyContent: 'space-between' }}>
+        <CardActions
+          sx={{
+            justifyContent: 'space-between',
+            position: 'relative',
+            top: 0,
+          }}
+        >
           <IconButton
             aria-label="add to favorites"
-            onClick={() => setColor(<BookmarkIcon />)}
-          >
-            {color}
-          </IconButton>
+            onClick={onclick}
+          ></IconButton>
           <Box display="flex" alignItems="center">
             <Box mr="5px">
               <StarIcon sx={{ color: '#ffc107' }} />
             </Box>
-            <Typography>{rank}</Typography>
+            <Typography>{rate}</Typography>
           </Box>
         </CardActions>
       </Card>
